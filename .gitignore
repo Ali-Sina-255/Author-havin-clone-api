@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+staticfiles
+mediafiles
+.envs/*
+!.envs/.local/
 # C extensions
 *.so
 dj-venv/
