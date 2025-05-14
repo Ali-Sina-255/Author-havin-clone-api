@@ -22,6 +22,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
+
 LOCAL_APPS = []
 
 THIRD_PARTY_APPS = []
