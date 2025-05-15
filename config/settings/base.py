@@ -24,7 +24,7 @@ DJANGO_APPS = [
 ]
 
 
-LOCAL_APPS = []
+LOCAL_APPS = ["apps.users", "apps.common"]
 
 THIRD_PARTY_APPS = []
 
@@ -64,7 +64,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR
+        "NAME": ROOT_DIR
         / "db.sqlite3",  # Creates the SQLite database in the base directory
     }
 }
