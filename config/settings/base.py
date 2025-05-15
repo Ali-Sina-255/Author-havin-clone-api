@@ -26,7 +26,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = ["apps.users", "apps.common"]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ["drf_yasg"]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
@@ -105,6 +105,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CORS settings (Optional)
 CORS_URLS_REGEX = r"^api/.*$"
 
+AUTH_USER_MODEL = "users.User"
+
 # Security settings
-CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
