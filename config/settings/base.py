@@ -9,6 +9,7 @@ environ.Env.read_env()
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
 BASE_DIR = ROOT_DIR / "apps"
+
 ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
 # DEBUG mode
@@ -109,3 +110,5 @@ AUTH_USER_MODEL = "users.User"
 
 # Security settings
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
+
+ADMIN_RUL = "supersecret"
