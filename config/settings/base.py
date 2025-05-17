@@ -28,7 +28,13 @@ DJANGO_APPS = [
 
 LOCAL_APPS = ["apps.users", "apps.common"]
 
-THIRD_PARTY_APPS = ["drf_yasg"]
+THIRD_PARTY_APPS = [
+    "drf_yasg",
+    "rest_framework",
+    "django_filters",
+    "corsheaders",
+    "djcelery_email",
+]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
@@ -95,11 +101,13 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+
 STATIC_ROOT = str(ROOT_DIR / "staticfile")
 
 # Media files (uploads)
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
+
 MEDIA_ROOT = str(ROOT_DIR / "mediafile")
 
 # Default primary key field type
@@ -110,9 +118,15 @@ CORS_URLS_REGEX = r"^api/.*$"
 
 AUTH_USER_MODEL = "users.User"
 
-# Security settings
-CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
-
 ADMIN_URL = "supersecret/"
-
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+CELERY_BROKER_URL = env("CELERY_BROKER")
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_BACKEND_MAX_RETRIES = 10
+CELERY_TASK_SEND_SENT_EVENT = True
+
+if USE_TZ:
+    CELERY_TIMEZONE = TIME_ZONE

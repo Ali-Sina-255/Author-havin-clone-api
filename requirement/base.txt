@@ -21,4 +21,4 @@ djangorestframework-simplejwt
 dj-rest-auth
 
 django-elasticsearch-dsl
-django-elasticsearch-dsl-drf
+django-elasticsearch-dsl-drf   
