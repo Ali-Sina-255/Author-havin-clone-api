@@ -15,6 +15,7 @@ services:
     depends_on:
       - postgres
       - mailhog
+      - redis
     command: /start
     networks:
       - author-api
@@ -49,7 +50,7 @@ services:
       dockerfile: ./docker/local/django/Dockerfile
     command: /start-celeryworker
     volumes:
-      -.: /app
+      - .:/app
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
@@ -57,6 +58,9 @@ services:
       - redis
       - postgres
       - mailhog
+    networks:
+      - author-api
+
   
   flower:
     build:
@@ -104,4 +108,4 @@ volumes:
   media_volume: {}
   local_postgres_data: {}
   local_postgres_data_backups: {}
-  flower_data:{}
+  flower_data: {}
