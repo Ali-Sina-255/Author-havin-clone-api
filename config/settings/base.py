@@ -10,7 +10,8 @@ ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
 BASE_DIR = ROOT_DIR / "apps"
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1", "api"]
+
 
 # DEBUG mode
 DEBUG = env.bool("DEBUG", default=True)
@@ -33,6 +34,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -111,4 +113,6 @@ AUTH_USER_MODEL = "users.User"
 # Security settings
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8080"]
 
-ADMIN_RUL = "supersecret"
+ADMIN_URL = "supersecret/"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

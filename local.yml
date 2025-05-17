@@ -5,8 +5,8 @@ services:
       dockerfile: ./docker/local/django/Dockerfile
     volumes:
       - .:/app:z
-      - static_volume:/app/staticfiles
-      - media_volume:/app/mediafiles
+      - static_volume:/app/staticfile
+      - media_volume:/app/mediafile
     expose:
       - "8000"
     env_file:
