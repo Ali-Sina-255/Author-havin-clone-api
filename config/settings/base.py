@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 import environ
@@ -34,7 +35,14 @@ THIRD_PARTY_APPS = [
     "django_filters",
     "corsheaders",
     "djcelery_email",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
 ]
+
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
@@ -47,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -130,3 +139,53 @@ CELERY_TASK_SEND_SENT_EVENT = True
 
 if USE_TZ:
     CELERY_TIMEZONE = TIME_ZONE
+
+# for allauth account
+SITE_ID = 1
+
+
+# rest framework  settings
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_FILTER_BACKEND": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
+}
+
+REST_AUTH = {
+    # Authentication settings
+    "USE_JWT": True,  # Set to True if using JWT-based authentication (with dj-rest-auth.jwt_auth)
+    "JWT_AUTH_COOKIE": "author-access-token",
+    "JWT_AUTH_REFRESH_COOKIE": "author-refresh-token",
+}
+
+AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend",  # Corrected typo: 'backend' instead of 'backend'
+)
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "apps.user.serializers.CustomRegisterSerializer"
+}
+
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("Bearer",),  # Corrected to be a tuple
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),  # Lifetime for access tokens
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),  # Corrected key name
+    "ROTATE_REFRESH_TOKENS": True,  # Fixed typo in key
+    "SIGNING_KEY": env("SIGNING_KEY"),  # Ensure this is set in your environment
+    "USER_ID_FIELD": "id",  # Field that stores user ID
+    "USER_ID_CLAIM": "user_id",  # Claim that holds user ID
+}

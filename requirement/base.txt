@@ -17,9 +17,9 @@ redis
 celery
 flower
 django-celery-email
+dj-rest-auth
 django-allauth
 djangorestframework-simplejwt
-dj-rest-auth
-
+requests
 django-elasticsearch-dsl
 django-elasticsearch-dsl-drf   

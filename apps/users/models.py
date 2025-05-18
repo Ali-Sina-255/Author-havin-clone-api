@@ -11,7 +11,9 @@ from .managers import CustomUserManager
 class User(AbstractBaseUser, PermissionsMixin):
     pkid = models.BigAutoField(primary_key=True, editable=True)
     id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-
+    username = models.CharField(
+        max_length=150, unique=True, blank=True, null=True, verbose_name=_("Username")
+    )
     first_name = models.CharField(verbose_name=_("First Name"), max_length=255)
     last_name = models.CharField(verbose_name=_("Last Name"), max_length=255)
     email = models.CharField(
@@ -22,7 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(default=timezone.now)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name"]
+    REQUIRED_FIELDS = ["first_name", "last_name", "username"]
 
     objects = CustomUserManager()
 
