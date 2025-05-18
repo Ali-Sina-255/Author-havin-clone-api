@@ -26,7 +26,7 @@ DJANGO_APPS = [
 ]
 
 
-LOCAL_APPS = ["apps.users", "apps.common"]
+LOCAL_APPS = ["apps.users", "apps.common", "apps.profiles"]
 
 THIRD_PARTY_APPS = [
     "drf_yasg",

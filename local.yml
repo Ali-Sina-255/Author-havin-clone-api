@@ -44,16 +44,20 @@ services:
     image : redis:7-alpine
     networks:
       - author-api
+
   celery_worker:
     build:
       context: .
       dockerfile: ./docker/local/django/Dockerfile
-    command: /start-celeryworker
+    command: /scripts/start-celeryworker
+
+
     volumes:
       - .:/app
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+
     depends_on:
       - redis
       - postgres
@@ -66,7 +70,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/local/django/Dockerfile
-    command: /start-flower
+    command: /scripts/start-flower
+
     volumes:
       - flower_data:/data
     env_file:
