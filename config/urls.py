@@ -39,6 +39,7 @@ urlpatterns = [
         PasswordResetConfirmView.as_view(),
         name="password_reset_confirm",  # fixed name
     ),
+    path("api/v1/profiles/", include("apps.profiles.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Optional: Customize admin UI
