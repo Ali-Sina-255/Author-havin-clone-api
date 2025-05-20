@@ -59,3 +59,4 @@ class Profile(TimeStampedModel):
 
     def check_following(self, profile):
         return self.followers.filter(pkid=profile.pkid).exists()
+    
