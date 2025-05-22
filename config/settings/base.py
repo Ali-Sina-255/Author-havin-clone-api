@@ -27,7 +27,13 @@ DJANGO_APPS = [
 ]
 
 
-LOCAL_APPS = ["apps.users", "apps.common", "apps.profiles"]
+LOCAL_APPS = [
+    "apps.users",
+    "apps.common",
+    "apps.profiles",
+    "apps.articles",
+    "apps.ratings",
+]
 
 THIRD_PARTY_APPS = [
     "drf_yasg",
@@ -41,6 +47,7 @@ THIRD_PARTY_APPS = [
     "allauth.socialaccount",
     "dj_rest_auth",
     "dj_rest_auth.registration",
+    "taggit",
 ]
 
 
