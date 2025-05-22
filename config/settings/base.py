@@ -181,11 +181,17 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 # ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_AUTHENTICATION_METHOD = "email"
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_METHODS = {"email"}  # Use email as the only login method
 
+# Signup fields: 'email*', 'password1*', 'password2*' (required fields)
+ACCOUNT_SIGNUP_FIELDS = ["email*", "password1*", "password2*"]
+
+# This one remains valid
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),  # Corrected to be a tuple
