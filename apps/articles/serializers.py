@@ -61,6 +61,7 @@ class ArticleSerializer(serializers.ModelSerializer):
         instance.banner_image = validated_data.get(
             "banner_image", instance.banner_image
         )
+
         instance.updated_at = validated_data.get("updated_at", instance.updated_at)
 
         if "tags" in validated_data:
