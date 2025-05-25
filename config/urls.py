@@ -40,6 +40,7 @@ urlpatterns = [
         name="password_reset_confirm",  # fixed name
     ),
     path("api/v1/profiles/", include("apps.profiles.urls")),
+    path("api/v1/articles/", include("apps.articles.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Optional: Customize admin UI
