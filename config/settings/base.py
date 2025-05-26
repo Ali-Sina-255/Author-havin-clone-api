@@ -33,6 +33,7 @@ LOCAL_APPS = [
     "apps.profiles",
     "apps.articles",
     "apps.ratings",
+    "apps.bookmarks",
 ]
 
 THIRD_PARTY_APPS = [
@@ -201,13 +202,4 @@ SIMPLE_JWT = {
     "SIGNING_KEY": env("SIGNING_KEY"),  # Ensure this is set in your environment
     "USER_ID_FIELD": "id",  # Field that stores user ID
     "USER_ID_CLAIM": "user_id",  # Claim that holds user ID
-}
-
-ACCOUNT_SIGNUP_FIELDS = {
-    "username": {
-        "required": True,
-    },
-    "email": {
-        "required": True,
-    },
 }

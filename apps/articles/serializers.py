@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
 from apps.articles.models import Article, ArticleView
+from apps.bookmarks.models import Bookmark
+from apps.bookmarks.serializers import BookmarkSerializer
 from apps.profiles.serializers import ProfileSerializers
 
 
@@ -29,8 +31,19 @@ class ArticleSerializer(serializers.ModelSerializer):
     tags = TagListField()
     views = serializers.SerializerMethodField()
     average_rating = serializers.SerializerMethodField()
+
+    bookmarks = serializers.SerializerMethodField()
+    bookmark_count = serializers.SerializerMethodField()
+
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
+
+    def get_bookmarks(self, obj):
+        bookmarks = Bookmark.objects.filter(article=obj)
+        return BookmarkSerializer(bookmarks, many=True).data
+
+    def get_bookmark_count(self, obj):
+        return Bookmark.objects.filter(article=obj).count()
 
     def get_average_rating(self, obj):
         return obj.average_rating()
@@ -83,6 +96,8 @@ class ArticleSerializer(serializers.ModelSerializer):
             "author_info",
             "views",
             "average_rating",
+            "bookmarks",
+            "bookmark_count",
             "description",
             "body",
             "banner_image",
