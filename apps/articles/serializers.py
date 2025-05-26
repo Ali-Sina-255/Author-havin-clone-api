@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.articles.models import Article, ArticleView
+from apps.articles.models import Article, ArticleView, Clap
 from apps.bookmarks.models import Bookmark
 from apps.bookmarks.serializers import BookmarkSerializer
 from apps.profiles.serializers import ProfileSerializers
@@ -104,3 +104,12 @@ class ArticleSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
+
+
+class ClapSerializer(serializers.ModelSerializer):
+    article_title = serializers.CharField(source="article.title", read_only=True)
+    user_first_name = serializers.CharField(source="user.first_name", read_only=True)
+
+    class Meta:
+        model = Clap
+        fields = ["id", "user_first_name", "article_title"]

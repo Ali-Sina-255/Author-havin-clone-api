@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Article, ArticleView
+from .models import Article, ArticleView, Clap
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -19,5 +19,12 @@ class ArticleViewAdmin(admin.ModelAdmin):
     ordering = ["-created_at"]
 
 
+class ClapAdmin(admin.ModelAdmin):
+    list_display = ["pkid", "id", "user", "article"]
+    list_display_links = ["id", "user"]
+    list_filter = ["created_at", "updated_at"]
+
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleView, ArticleViewAdmin)
+admin.site.register(Clap, ClapAdmin)
