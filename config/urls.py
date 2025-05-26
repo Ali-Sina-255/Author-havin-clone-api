@@ -37,7 +37,7 @@ urlpatterns = [
     path(
         "api/v1/auth/password/reset/confirm/<uidb64>/<token>/",
         PasswordResetConfirmView.as_view(),
-        name="password_reset_confirm",  # fixed name
+        name="password_reset_confirm",
     ),
     path("api/v1/profiles/", include("apps.profiles.urls")),
     path("api/v1/articles/", include("apps.articles.urls")),

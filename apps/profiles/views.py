@@ -47,7 +47,7 @@ class ProfileDetailAPIView(generics.RetrieveAPIView):
 
 class UpdateProfileAPIView(generics.UpdateAPIView):
     serializer_class = ProfileSerializers
-    pagination_class = [ProfilePagination]
+    pagination_class = ProfilePagination
     permission_classes = [IsAuthenticated]
     parser_classes = [MultiPartParser]
     renderer_classes = [ProfileJsonRenderers]

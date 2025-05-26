@@ -26,7 +26,7 @@ class ArticleListCreateViewSet(generics.ListCreateAPIView):
     pagination_class = ArticlePagination
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter)
     filterset_class = ArticleFilter
-    ordering_fields = ["created_at", "update_at"]
+    ordering_fields = ["created_at", "updated_at"]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -43,17 +43,19 @@ class ArticleRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     renderer_classes = [ArticleJSONRenderer]
 
     def perform_update(self, serializer):
+        # Ensure the author is updated correctly
         serializer.save(author=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
-
         except Http404:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = self.get_serializer(instance)
-        viewer_ip = request.META.get("ROOT_RADD", None)
+        viewer_ip = request.META.get("REMOTE_ADDR", None)
         ArticleView.record_view(
             article=instance, viewer_ip=viewer_ip, user=request.user
         )
+
+        return Response(serializer.data)
