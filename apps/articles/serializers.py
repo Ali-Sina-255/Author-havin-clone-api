@@ -34,9 +34,12 @@ class ArticleSerializer(serializers.ModelSerializer):
 
     bookmarks = serializers.SerializerMethodField()
     bookmark_count = serializers.SerializerMethodField()
-
+    claps_count = serializers.SerializerMethodField()
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
+
+    def get_claps_count(self, obj):
+        return obj.claps.count()
 
     def get_bookmarks(self, obj):
         bookmarks = Bookmark.objects.filter(article=obj)
@@ -98,6 +101,7 @@ class ArticleSerializer(serializers.ModelSerializer):
             "average_rating",
             "bookmarks",
             "bookmark_count",
+            "claps_count",
             "description",
             "body",
             "banner_image",
