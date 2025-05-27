@@ -50,6 +50,8 @@ THIRD_PARTY_APPS = [
     "dj_rest_auth",
     "dj_rest_auth.registration",
     "taggit",
+    "django_elasticsearch_dsl",
+    "django_elasticsearch_dsl_drf",
 ]
 
 
@@ -203,4 +205,9 @@ SIMPLE_JWT = {
     "SIGNING_KEY": env("SIGNING_KEY"),  # Ensure this is set in your environment
     "USER_ID_FIELD": "id",  # Field that stores user ID
     "USER_ID_CLAIM": "user_id",  # Claim that holds user ID
+}
+
+
+ELASTICSEARCH_DSL = {
+    "default": {"host": "es:9200"},
 }
