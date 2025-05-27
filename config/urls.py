@@ -43,6 +43,7 @@ urlpatterns = [
     path("api/v1/articles/", include("apps.articles.urls")),
     path("api/v1/ratings/", include("apps.ratings.urls")),
     path("api/v1/bookmarks/", include("apps.bookmarks.urls")),
+    path("api/v1/responses/", include("apps.responses.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Optional: Customize admin UI

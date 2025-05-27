@@ -34,6 +34,7 @@ LOCAL_APPS = [
     "apps.articles",
     "apps.ratings",
     "apps.bookmarks",
+    "apps.responses",
 ]
 
 THIRD_PARTY_APPS = [

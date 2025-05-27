@@ -4,6 +4,8 @@ from apps.articles.models import Article, ArticleView, Clap
 from apps.bookmarks.models import Bookmark
 from apps.bookmarks.serializers import BookmarkSerializer
 from apps.profiles.serializers import ProfileSerializers
+from apps.responses.models import Response
+from apps.responses.serializers import ResponseSerializer
 
 
 class TagListField(serializers.Field):
@@ -35,8 +37,13 @@ class ArticleSerializer(serializers.ModelSerializer):
     bookmarks = serializers.SerializerMethodField()
     bookmark_count = serializers.SerializerMethodField()
     claps_count = serializers.SerializerMethodField()
+    responses = ResponseSerializer(many=True, read_only=True)
+    response_count = serializers.CharField(source="response.count", read_only=True)
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
+
+    def get_response_count(self, obj):
+        return obj.responses.count()
 
     def get_claps_count(self, obj):
         return obj.claps.count()
@@ -102,6 +109,8 @@ class ArticleSerializer(serializers.ModelSerializer):
             "bookmarks",
             "bookmark_count",
             "claps_count",
+            "responses",
+            "response_count",
             "description",
             "body",
             "banner_image",
