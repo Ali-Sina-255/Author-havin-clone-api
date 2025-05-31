@@ -1,5 +1,4 @@
 CELERY_BROKER=redis://redis:6379/0
-
 DOMAIN=localhost:8080
 DEBUG=True
 EMAIL_PORT=1025

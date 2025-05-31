@@ -39,7 +39,7 @@ flake8:
 	docker compose -f local.yml exec api flake8 .
 
 black-check:
-	docker compose -f local.yml exec api black . --check --exclude=migrations
+	docker compose -f local.yml exec api black . --check --exclude=migrations .
 
 black-diff:
 	docker compose -f local.yml exec api black . --diff --exclude=migrations
@@ -48,7 +48,7 @@ black:
 	docker compose -f local.yml exec api black . --exclude=migrations
 
 isort-check:
-	docker compose -f local.yml exec api isort . --check-only --skip venv --skip migrations
+	docker compose -f local.yml exec api isort . --check-only --skip venv --skip migrations  
 
 isort-diff:
 	docker compose -f local.yml exec api isort . --diff --skip venv --skip migrations
