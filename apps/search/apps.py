@@ -8,4 +8,6 @@ class SearchConfig(AppConfig):
     verbose_name = _("Search")
 
     def ready(self):
-        import apps.search.signals
+        import apps.search.signals  
+        import apps.search.documents  
+        

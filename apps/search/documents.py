@@ -1,23 +1,23 @@
-from django_elasticsearch_dsl import documents, fields
+from django_elasticsearch_dsl import Document, fields
 from django_elasticsearch_dsl.registries import registry
 
 from apps.articles.models import Article
 
 
 @registry.register_document
-class ArticleDocuments(documents):
-    title = fields.TextField(attr="title")
-    description = fields.TextField(attr="description")
-    body = fields.TextField(attr="body")
-    author_first_name = fields.TextField("")
-    author_last_name = fields.TextField("")
+class ArticleDocuments(Document):
+    title = fields.TextField()
+    description = fields.TextField()
+    body = fields.TextField()
+    author_first_name = fields.TextField()
+    author_last_name = fields.TextField()
     tags = fields.KeywordField()
 
     class Index:
         name = "articles"
-        settings = {"number_of_shards": "1", "number_of_replicas": 0}
+        settings = {"number_of_shards": 1, "number_of_replicas": 0}
 
-    class Meta:
+    class Django:
         model = Article
         fields = ["created_at"]
 

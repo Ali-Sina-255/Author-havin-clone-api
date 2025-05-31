@@ -1,3 +1,4 @@
+import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -35,6 +36,7 @@ LOCAL_APPS = [
     "apps.ratings",
     "apps.bookmarks",
     "apps.responses",
+    "apps.search",
 ]
 
 THIRD_PARTY_APPS = [
@@ -210,4 +212,8 @@ SIMPLE_JWT = {
 
 ELASTICSEARCH_DSL = {
     "default": {"host": "es:9200"},
+}
+
+ELASTICSEARCH_DSL = {
+    "default": {"hosts": os.environ.get("ELASTICSEARCH_DSL_HOST", "es:9200")}
 }

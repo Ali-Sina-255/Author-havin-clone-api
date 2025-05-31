@@ -21,5 +21,7 @@ dj-rest-auth
 django-allauth
 djangorestframework-simplejwt
 requests
+elasticsearch==7.17.9
+elasticsearch-dsl==7.4.1
 django-elasticsearch-dsl
 django-elasticsearch-dsl-drf   

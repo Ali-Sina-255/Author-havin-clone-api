@@ -6,6 +6,6 @@ urlpatterns = [
     path(
         "search/",
         views.ArticleElasticSearchView.as_view({"get": "list"}),
-        nam="article-search",
+        name="article-search",
     )
 ]
