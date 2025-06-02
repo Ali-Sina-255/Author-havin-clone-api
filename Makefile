@@ -64,6 +64,8 @@ create:
 
 pytest:
 	docker compose -f local.yml run --rm api pytest -p no:warnigs --cov=. -v
+pytest-error:
+	docker compose -f local.yml run --rm api pytest -p no:warnings --cov=. -v --tb=short
 
 cov-report:
 	docker compose -f local.yml run --rm api pytest -p no:warnigs --cov=. --cov-report html

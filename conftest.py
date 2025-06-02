@@ -1,7 +1,7 @@
 import pytest
 from pytest_factoryboy import register
 
-from apps.users.tests.factories import UserFactory
+from apps.users.factories import UserFactory
 
 register(UserFactory)
 

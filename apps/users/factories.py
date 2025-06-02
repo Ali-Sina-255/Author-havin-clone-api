@@ -17,12 +17,11 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.LazyAttribute(lambda x: faker.email())
     password = factory.LazyAttribute(lambda x: faker.password())
     is_active = True
-    is_staff = True
+    is_staff = False
 
     @classmethod
     def _create(cls, model_class, *args, **kwargs):
         manager = cls._get_manager(model_class)
-        if "is_superuser" in kwargs:
+        if kwargs.get("is_superuser"):
             return manager.create_superuser(*args, **kwargs)
-        else:
-            return manager.create_user(*args, **kwargs)
+        return manager.create_user(*args, **kwargs)
