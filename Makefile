@@ -69,3 +69,5 @@ pytest-error:
 
 cov-report:
 	docker compose -f local.yml run --rm api pytest -p no:warnigs --cov=. --cov-report html
+
+

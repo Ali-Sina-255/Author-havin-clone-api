@@ -20,6 +20,8 @@ services:
     env_file:
       - ./.envs/.local/.django
       - ./.envs/.local/.postgres
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings.local
     depends_on:
       - postgres
       - mailhog
@@ -28,6 +30,7 @@ services:
     command: /start
     networks:
       - author-api
+
 
   postgres:
     build:

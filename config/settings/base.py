@@ -25,6 +25,7 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
 ]
 
 
@@ -216,4 +217,10 @@ ELASTICSEARCH_DSL = {
 
 ELASTICSEARCH_DSL = {
     "default": {"hosts": os.environ.get("ELASTICSEARCH_DSL_HOST", "es:9200")}
+}
+
+
+GRAPH_MODELS = {
+    "all_applications": True,
+    "group_models": True,
 }
