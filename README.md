@@ -1,2 +1,2 @@
 # Author-havin-clone-api
-![Project Model](https://raw.githubusercontent.com/Author-havin-clone-api/Author-havin-clone-api/my_project_models.png)
+https://raw.githubusercontent.com/Ali-Sina-255/Author-havin-clone-api/main/my_project_models.png
