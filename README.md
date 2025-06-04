@@ -1,6 +1,3 @@
-Great! You're building a Django project with Docker, Redis, and Celery. I can help you create a comprehensive `README.md` file that includes instructions for installing Docker, Docker Desktop, cloning your repo, and setting up the project. Here's a template for your `README.md`:
-
----
 
 # Author-Havin API Clone
 
